@@ -1,0 +1,8 @@
+{
+  "name": "Lumina WebAR",
+  "description": "A high-performance, app-less WebAR SaaS platform for creators.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

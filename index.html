@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Lumina WebAR Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- A-Frame and AR.js -->
+    <!-- Downgrading to A-Frame 1.4.2 for better stability with AR.js -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              background: '#0f1115',
+              surface: '#181b21',
+              surfaceHighlight: '#22262e',
+              primary: '#06b6d4', // Cyan 500
+              primaryHover: '#0891b2',
+              accent: '#8b5cf6', // Violet 500
+              textMain: '#f3f4f6',
+              textMuted: '#9ca3af',
+            },
+            animation: {
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0f1115;
+        color: #f3f4f6;
+        -webkit-font-smoothing: antialiased;
+        margin: 0;
+        overflow: hidden; /* Often needed for AR.js */
+      }
+      /* A-Frame specific overrides to prevent it from hijacking the whole page when embedded */
+      .a-canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      
+      /* Hide scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?external=react,react-dom",
+    "@remix-run/router": "https://esm.sh/@remix-run/router@1.15.3",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react",
+    "qrcode.react": "https://esm.sh/qrcode.react@3.1.0?external=react",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react": "https://esm.sh/react@18.3.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root" style="height: 100vh; overflow-y: auto;"></div>
+  </body>
+</html>
