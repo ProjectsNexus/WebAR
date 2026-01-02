@@ -17,7 +17,7 @@ export interface Project {
   avgDwellTime?: string;
   createdAt: string;
   status: 'active' | 'draft' | 'archived' | 'live';
-  category?: 'food' | 'decoration' | 'custom';
+  category?: 'food' | 'decoration' | 'real-estate' | 'fashion' | 'automotive' | 'custom';
   isPrebuilt?: boolean;
   settings?: ProjectSettings;
 }

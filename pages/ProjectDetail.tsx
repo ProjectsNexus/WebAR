@@ -4,6 +4,7 @@ import { Layout } from '../components/Layout';
 import { ChevronLeft, Share2, Download, Smartphone, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { ThreeViewer } from '../components/ThreeViewer';
+import { AROverlay } from '../components/AROverlay';
 import { generateCampaignStrategy } from '../services/gemini';
 import { CampaignIdea, Project } from '../types';
 import { QRCodeSVG } from 'qrcode.react';
@@ -16,6 +17,9 @@ const ProjectDetail: React.FC = () => {
   // AI State
   const [isGenerating, setIsGenerating] = useState(false);
   const [campaignIdea, setCampaignIdea] = useState<CampaignIdea | null>(null);
+
+  // AR Overlay State
+  const [showAR, setShowAR] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -53,9 +57,13 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Link to={`/ar/${project.id}`} target="_blank">
-               <Button variant="ghost" leftIcon={<Smartphone size={16}/>}>Test AR</Button>
-            </Link>
+            <Button 
+                variant="ghost" 
+                leftIcon={<Smartphone size={16}/>}
+                onClick={() => setShowAR(true)}
+            >
+                Test AR
+            </Button>
             <Button leftIcon={<Share2 size={16} />}>Share</Button>
           </div>
         </div>
@@ -66,7 +74,11 @@ const ProjectDetail: React.FC = () => {
           {/* Main Preview Area */}
           <div className="flex-1 bg-black/50 p-6 flex flex-col relative min-h-[400px]">
              <div className="flex-1 rounded-2xl overflow-hidden border border-surfaceHighlight bg-surface relative">
-                <ThreeViewer modelUrl={project.modelUrl} autoRotate={!campaignIdea} />
+                <ThreeViewer 
+                  id={project.id}
+                  modelUrl={project.modelUrl} 
+                  autoRotate={!campaignIdea} 
+                />
              </div>
           </div>
 
@@ -147,6 +159,14 @@ const ProjectDetail: React.FC = () => {
 
         </div>
       </div>
+
+      {/* In-Context AR Overlay */}
+      {showAR && project && (
+        <AROverlay 
+            modelUrl={project.modelUrl} 
+            onClose={() => setShowAR(false)} 
+        />
+      )}
     </Layout>
   );
 };

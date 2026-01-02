@@ -6,6 +6,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import Experience from './pages/Experience';
 import Assets from './pages/Assets';
 import Settings from './pages/Settings';
+import NewExperience from './pages/NewExperience';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Dashboard />} />
+        <Route path="/new" element={<NewExperience />} />
         <Route path="/assets" element={<Assets />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/project/:id" element={<ProjectDetail />} />

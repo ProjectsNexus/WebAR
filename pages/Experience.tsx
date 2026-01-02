@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { ThreeViewer } from '../components/ThreeViewer';
 import { AROverlay } from '../components/AROverlay';
 import { Button } from '../components/ui/Button';
@@ -9,8 +9,13 @@ import { getProject } from '../data/mockData';
 
 const Experience: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
   const [project, setProject] = useState<Project | null>(null);
-  const [mode, setMode] = useState<'3d' | 'ar'>('3d');
+  
+  // Initialize mode based on URL query param '?mode=ar'
+  const [mode, setMode] = useState<'3d' | 'ar'>(
+    searchParams.get('mode') === 'ar' ? 'ar' : '3d'
+  );
 
   useEffect(() => {
     if (id) {
@@ -41,7 +46,11 @@ const Experience: React.FC = () => {
             onClose={() => setMode('3d')} 
           />
         ) : (
-          <ThreeViewer modelUrl={project.modelUrl} autoRotate />
+          <ThreeViewer 
+            id={project.id}
+            modelUrl={project.modelUrl} 
+            autoRotate 
+          />
         )}
       </div>
 

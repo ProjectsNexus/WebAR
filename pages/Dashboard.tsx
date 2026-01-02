@@ -6,11 +6,21 @@ import { Link } from 'react-router-dom';
 import { PREBUILT_EXPERIENCES } from '../data/mockData';
 
 const Dashboard: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'food' | 'decoration' | 'custom'>('all');
+  const [filter, setFilter] = useState<'all' | 'food' | 'decoration' | 'real-estate' | 'fashion' | 'custom'>('all');
 
   const filteredProjects = PREBUILT_EXPERIENCES.filter(
     (p) => filter === 'all' || p.category === filter
   );
+
+  const getCategoryColor = (cat?: string) => {
+    switch(cat) {
+      case 'food': return 'text-orange-500 bg-orange-500/10 border-orange-500/20';
+      case 'real-estate': return 'text-blue-500 bg-blue-500/10 border-blue-500/20';
+      case 'decoration': return 'text-purple-500 bg-purple-500/10 border-purple-500/20';
+      case 'fashion': return 'text-pink-500 bg-pink-500/10 border-pink-500/20';
+      default: return 'text-gray-400 bg-gray-500/10 border-gray-500/20';
+    }
+  }
 
   return (
     <Layout>
@@ -21,7 +31,9 @@ const Dashboard: React.FC = () => {
             <h1 className="text-3xl font-bold text-textMain mb-1">Dashboard</h1>
             <p className="text-textMuted">Manage your AR experiences and track performance.</p>
           </div>
-          <Button leftIcon={<Plus size={18} />}>New Experience</Button>
+          <Link to="/new">
+             <Button leftIcon={<Plus size={18} />}>New Experience</Button>
+          </Link>
         </div>
 
         {/* Stats Grid */}
@@ -34,31 +46,16 @@ const Dashboard: React.FC = () => {
         {/* Projects List */}
         <div className="bg-surface rounded-xl border border-surfaceHighlight overflow-hidden">
           <div className="p-4 border-b border-surfaceHighlight flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4 w-full sm:w-auto overflow-x-auto no-scrollbar">
-               <button 
-                  onClick={() => setFilter('all')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${filter === 'all' ? 'bg-primary/20 text-primary' : 'text-textMuted hover:text-textMain'}`}
-               >
-                 All Projects
-               </button>
-               <button 
-                  onClick={() => setFilter('food')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${filter === 'food' ? 'bg-primary/20 text-primary' : 'text-textMuted hover:text-textMain'}`}
-               >
-                 Food
-               </button>
-               <button 
-                  onClick={() => setFilter('decoration')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${filter === 'decoration' ? 'bg-primary/20 text-primary' : 'text-textMuted hover:text-textMain'}`}
-               >
-                 Decoration
-               </button>
-               <button 
-                  onClick={() => setFilter('custom')}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${filter === 'custom' ? 'bg-primary/20 text-primary' : 'text-textMuted hover:text-textMain'}`}
-               >
-                 Custom
-               </button>
+            <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto no-scrollbar pb-2 sm:pb-0">
+               {['all', 'food', 'decoration', 'real-estate', 'fashion'].map((f) => (
+                  <button 
+                    key={f}
+                    onClick={() => setFilter(f as any)}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap capitalize ${filter === f ? 'bg-primary/20 text-primary' : 'text-textMuted hover:text-textMain'}`}
+                  >
+                    {f.replace('-', ' ')}
+                  </button>
+               ))}
             </div>
             
             <div className="relative w-full sm:w-auto">
@@ -88,8 +85,8 @@ const Dashboard: React.FC = () => {
                       {project.status}
                     </span>
                     {project.category && (
-                        <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded border bg-blue-500/10 text-blue-500 border-blue-500/20">
-                            {project.category}
+                        <span className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded border ${getCategoryColor(project.category)}`}>
+                            {project.category.replace('-', ' ')}
                         </span>
                     )}
                   </div>

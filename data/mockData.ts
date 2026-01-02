@@ -1,156 +1,206 @@
 import { Project } from '../types';
 
+export const TEMPLATES = [
+  { 
+    label: 'Fresh Avocado', 
+    category: 'food', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Avocado/glTF-Binary/Avocado.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1523049673856-606ae93a979d?auto=format&fit=crop&q=80&w=200',
+    description: 'High-fidelity 3D scan of a fresh avocado, perfect for grocery AR.' 
+  },
+  { 
+    label: 'Gourmet Olives', 
+    category: 'food', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/IridescentDishWithOlives/glTF-Binary/IridescentDishWithOlives.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1596707323533-5c74384cb32d?auto=format&fit=crop&q=80&w=200',
+    description: 'Realistic dish with olives using advanced glTF sheen and iridescence.' 
+  },
+  { 
+    label: 'Velvet Chair', 
+    category: 'real-estate', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=200',
+    description: 'Modern accent chair with sophisticated sheen fabric.' 
+  },
+  { 
+    label: 'Leather Sofa', 
+    category: 'real-estate', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=200',
+    description: 'Luxury wood and leather sofa for virtual home staging.' 
+  },
+  { 
+    label: 'Antique Camera', 
+    category: 'decoration', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AntiqueCamera/glTF-Binary/AntiqueCamera.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=200',
+    description: 'Vintage camera model for detailed prop visualization.' 
+  },
+  { 
+    label: 'Sports Sneaker', 
+    category: 'fashion', 
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/MaterialsVariantsShoe/glTF-Binary/MaterialsVariantsShoe.glb', 
+    thumbnail: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=200',
+    description: 'High-detail sneaker with multiple material variants.' 
+  },
+  {
+    label: 'Concept Car',
+    category: 'automotive',
+    url: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/glTF-Binary/CarConcept.glb',
+    thumbnail: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=200',
+    description: 'Sleek automotive concept showcasing clear-coat materials.'
+  }
+];
+
 export const PREBUILT_EXPERIENCES: Project[] = [
   // Food Category
   {
-    id: "food-burger-deluxe",
-    name: "Burger Deluxe",
-    description: "A mouth-watering gourmet burger with realistic textures and lighting.",
+    id: "food-avocado",
+    name: "Fresh Avocado",
+    description: TEMPLATES[0].description,
     status: "live",
     category: "food",
     isPrebuilt: true,
-    views: 3120,
-    interactions: 2450,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/SheenChair/glTF-Binary/SheenChair.glb", // Placeholder model for food
-    thumbnailUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800",
-    createdAt: "2024-01-14T10:00:00Z",
-    avgDwellTime: "1m 30s",
-    settings: { scale: 5, autoRotate: true, pinchToZoom: true },
+    views: 4521,
+    interactions: 3102,
+    modelUrl: TEMPLATES[0].url,
+    thumbnailUrl: TEMPLATES[0].thumbnail,
+    createdAt: "2024-02-01T10:00:00Z",
+    avgDwellTime: "45s",
+    settings: { scale: 10, autoRotate: true, pinchToZoom: true },
   },
   {
     id: "food-olives",
     name: "Gourmet Olives",
-    description: "Realistic dish with olives using advanced glTF sheen and iridescence extensions.",
+    description: TEMPLATES[1].description,
     status: "live",
     category: "food",
     isPrebuilt: true,
     views: 1243,
     interactions: 892,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/IridescentDishWithOlives/glTF-Binary/IridescentDishWithOlives.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1596707323533-5c74384cb32d?auto=format&fit=crop&q=80&w=800",
+    modelUrl: TEMPLATES[1].url,
+    thumbnailUrl: TEMPLATES[1].thumbnail,
     createdAt: "2024-01-15T10:00:00Z",
-    avgDwellTime: "45s",
+    avgDwellTime: "1m 12s",
     settings: { scale: 5, autoRotate: true, pinchToZoom: true },
   },
-  {
-    id: "food-fridge",
-    name: "Commercial Cooler",
-    description: "High-detail industrial refrigerator for restaurant and commercial kitchen previews.",
-    status: "live",
-    category: "food",
-    isPrebuilt: true,
-    views: 756,
-    interactions: 521,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CommercialRefrigerator/glTF-Binary/CommercialRefrigerator.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
-    createdAt: "2024-01-17T10:00:00Z",
-    avgDwellTime: "2m 10s",
-    settings: { scale: 1, autoRotate: true, pinchToZoom: true },
-  },
 
-  // Decoration Category
+  // Real Estate / Staging
   {
-    id: "decor-leather-sofa",
+    id: "re-sofa",
     name: "Sheen Leather Sofa",
-    description: "Luxury wood and leather sofa showcasing advanced material sheen properties.",
+    description: TEMPLATES[3].description,
     status: "live",
-    category: "decoration",
+    category: "real-estate",
     isPrebuilt: true,
     views: 2134,
     interactions: 1567,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800",
+    modelUrl: TEMPLATES[3].url,
+    thumbnailUrl: TEMPLATES[3].thumbnail,
     createdAt: "2024-01-18T10:00:00Z",
     avgDwellTime: "3m 12s",
     settings: { scale: 1, autoRotate: true, pinchToZoom: true },
   },
   {
-    id: "decor-sheen-chair",
+    id: "re-chair",
     name: "Velvet Accent Chair",
-    description: "Modern accent chair with sophisticated sheen fabric and wooden legs.",
+    description: TEMPLATES[2].description,
     status: "live",
-    category: "decoration",
+    category: "real-estate",
     isPrebuilt: true,
     views: 1432,
     interactions: 987,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=800",
+    modelUrl: TEMPLATES[2].url,
+    thumbnailUrl: TEMPLATES[2].thumbnail,
     createdAt: "2024-01-19T10:00:00Z",
     avgDwellTime: "1m 45s",
     settings: { scale: 1, autoRotate: true, pinchToZoom: true },
   },
+
+  // Decoration
   {
-    id: "decor-stained-glass-lamp",
-    name: "Stained Glass Lamp",
-    description: "Intricate stained glass lamp featuring complex transmission and lighting properties.",
+    id: "decor-camera",
+    name: "Antique Camera",
+    description: TEMPLATES[4].description,
     status: "live",
     category: "decoration",
     isPrebuilt: true,
     views: 891,
     interactions: 612,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/StainedGlassLamp/glTF-Binary/StainedGlassLamp.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1513506003011-3b03c8b69580?auto=format&fit=crop&q=80&w=800",
+    modelUrl: TEMPLATES[4].url,
+    thumbnailUrl: TEMPLATES[4].thumbnail,
     createdAt: "2024-01-20T10:00:00Z",
     avgDwellTime: "2m 00s",
     settings: { scale: 1, autoRotate: true, pinchToZoom: true },
   },
-
-  // Miscellaneous Category
   {
-    id: "misc-luxury-watch",
-    name: "Chronograph Watch",
-    description: "High-precision chronograph watch with metallic finishes and complex geometry.",
+    id: "decor-lamp",
+    name: "Stained Glass Lamp",
+    description: "Intricate stained glass lamp featuring transmission properties.",
     status: "live",
-    category: "custom",
+    category: "decoration",
+    isPrebuilt: true,
+    views: 654,
+    interactions: 423,
+    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/StainedGlassLamp/glTF-Binary/StainedGlassLamp.glb",
+    thumbnailUrl: "https://images.unsplash.com/photo-1513506003011-3b03c8b69580?auto=format&fit=crop&q=80&w=800",
+    createdAt: "2024-01-20T10:00:00Z",
+    avgDwellTime: "1m 30s",
+    settings: { scale: 1, autoRotate: true, pinchToZoom: true },
+  },
+
+  // Fashion / Custom
+  {
+    id: "fashion-shoe",
+    name: "Urban Sneaker",
+    description: TEMPLATES[5].description,
+    status: "live",
+    category: "fashion",
+    isPrebuilt: true,
+    views: 5678,
+    interactions: 4321,
+    modelUrl: TEMPLATES[5].url,
+    thumbnailUrl: TEMPLATES[5].thumbnail,
+    createdAt: "2024-02-05T10:00:00Z",
+    avgDwellTime: "2m 15s",
+    settings: { scale: 1, autoRotate: true, pinchToZoom: true },
+  },
+  {
+    id: "misc-watch",
+    name: "Chronograph Watch",
+    description: "Precision watch with metallic finishes.",
+    status: "live",
+    category: "fashion",
     isPrebuilt: true,
     views: 3421,
     interactions: 2678,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ChronographWatch/glTF-Binary/ChronographWatch.glb",
+    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ChronographWatch/glTF-Binary/ChronographWatch.glb",
     thumbnailUrl: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800",
     createdAt: "2024-01-21T10:00:00Z",
     avgDwellTime: "55s",
     settings: { scale: 10, autoRotate: true, pinchToZoom: true },
   },
   {
-    id: "misc-car-concept",
+    id: "misc-car",
     name: "Concept Car",
-    description: "Sleek automotive concept showcasing clear-coat and metallic materials.",
+    description: TEMPLATES[6].description,
     status: "live",
-    category: "custom",
+    category: "automotive",
     isPrebuilt: true,
     views: 2567,
     interactions: 1890,
-    modelUrl:
-      "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/CarConcept/glTF-Binary/CarConcept.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=800",
+    modelUrl: TEMPLATES[6].url,
+    thumbnailUrl: TEMPLATES[6].thumbnail,
     createdAt: "2024-01-22T10:00:00Z",
     avgDwellTime: "3m 45s",
-    settings: { scale: 1, autoRotate: true, pinchToZoom: true },
-  },
-  {
-    id: "misc-duck",
-    name: "Iconic Yellow Duck",
-    description: "The classic glTF sample duck, perfect for testing WebAR scale and placement.",
-    status: "live",
-    category: "custom",
-    isPrebuilt: true,
-    views: 1876,
-    interactions: 1234,
-    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Duck/glTF-Binary/Duck.glb",
-    thumbnailUrl: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?auto=format&fit=crop&q=80&w=800",
-    createdAt: "2024-01-23T10:00:00Z",
-    avgDwellTime: "25s",
     settings: { scale: 1, autoRotate: true, pinchToZoom: true },
   },
 ];
 
 export const getProject = (id: string): Project | null => {
   return PREBUILT_EXPERIENCES.find(p => p.id === id) || null;
+}
+
+export const addProject = (project: Project) => {
+  PREBUILT_EXPERIENCES.unshift(project);
 }

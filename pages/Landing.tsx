@@ -16,7 +16,7 @@ const Landing: React.FC = () => {
             <span className="font-bold text-xl tracking-tight">Lumina</span>
           </div>
           <div className="flex items-center gap-4">
-            <Link to="/ar/demo" className="text-sm text-textMuted hover:text-textMain hidden sm:block">Try Demo</Link>
+            <Link to="/ar/food-avocado?mode=ar" className="text-sm text-textMuted hover:text-textMain hidden sm:block">Try Demo</Link>
             <Link to="/dashboard">
               <Button size="sm">Launch Console</Button>
             </Link>
@@ -53,7 +53,7 @@ const Landing: React.FC = () => {
                 Start Building Free
               </Button>
             </Link>
-            <Link to="/ar/demo">
+            <Link to="/ar/food-avocado?mode=ar">
               <Button variant="secondary" size="lg">
                 View Gallery
               </Button>
