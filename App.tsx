@@ -1,29 +1,33 @@
-import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Dashboard from './pages/Dashboard';
-import ProjectDetail from './pages/ProjectDetail';
-import Experience from './pages/Experience';
-import Assets from './pages/Assets';
-import Settings from './pages/Settings';
-import NewExperience from './pages/NewExperience';
+import React, { useState } from 'react';
+import { ARView } from './components/ARView';
+import { SwipeBar } from './components/SwipeBar';
+import { AR_MODELS } from './data/models';
 
 const App: React.FC = () => {
+  const [modelIndex, setModelIndex] = useState(0);
+
+  const nextModel = () => {
+    setModelIndex((prev) => (prev + 1) % AR_MODELS.length);
+  };
+
+  const prevModel = () => {
+    setModelIndex((prev) => (prev - 1 + AR_MODELS.length) % AR_MODELS.length);
+  };
+
+  const currentModel = AR_MODELS[modelIndex];
+
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/projects" element={<Dashboard />} />
-        <Route path="/new" element={<NewExperience />} />
-        <Route path="/assets" element={<Assets />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
-        <Route path="/ar/:id" element={<Experience />} />
-        {/* Fallbacks */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </HashRouter>
+    <div className="w-full h-full relative bg-transparent overflow-hidden">
+      {/* Main AR Layer */}
+      <ARView model={currentModel} />
+
+      {/* Controls Layer */}
+      <SwipeBar 
+        onSwipeLeft={nextModel} 
+        onSwipeRight={prevModel}
+        currentLabel={`${currentModel.name} (${modelIndex + 1}/${AR_MODELS.length})`}
+      />
+    </div>
   );
 };
 
